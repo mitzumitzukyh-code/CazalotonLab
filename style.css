@@ -1,0 +1,32 @@
+@import url("tokens.css");
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap");
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--lab-font);background:url("ui/zebra-corner.svg") top right/240px no-repeat,var(--lab-bg);color:var(--lab-text)}
+.app{display:grid;grid-template-columns:88px 1fr;min-height:100vh}
+.side{border-right:1px solid #2e2e2e;background:#121212e0;padding:18px 10px;display:flex;flex-direction:column;gap:8px}
+.side img.mark{width:56px;height:56px;margin:0 auto 12px}
+.nav-btn{color:var(--lab-muted);text-decoration:none;font-size:10px;font-weight:600;padding:10px 6px;border-radius:12px;text-align:center}
+.nav-btn.active,.nav-btn:hover{background:#2a2a2a;color:var(--lab-gold-soft)}
+.main{padding:22px 28px 48px;max-width:1440px}
+.top{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:22px}
+.pills{margin-left:auto;display:flex;gap:8px}
+.pill{font-size:11px;font-weight:700;border:1px solid #3a3a3a;border-radius:999px;padding:6px 10px;color:var(--lab-muted)}
+.pill.gold{color:var(--lab-gold);border-color:#5a4a18;background:#2a230f}
+.pill.ok{color:var(--lab-verified)}
+.kpis{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px}
+.card{background:var(--lab-card);border:1px solid #323232;border-radius:16px;padding:14px 16px}
+.card h3{font-size:11px;color:var(--lab-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.kpi-num{font-family:var(--lab-mono);font-size:20px}
+.kpi-last{display:flex;align-items:center;gap:12px}
+.kpi-last img,.draw img{width:52px;height:52px}
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 7px;border-radius:999px;margin-top:6px}
+.badge.official{background:#3a2e0c;color:var(--lab-official)}
+.badge.pending{background:#2a2a2a;color:#9a9a9a}
+.nobet{text-align:center;border:1px solid #5a4a18;background:#2a230f;color:var(--lab-gold);font-weight:800;letter-spacing:.14em;padding:10px;border-radius:14px;margin:12px 0}
+.timeline{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px}
+.draw{background:#1c1c1c;border:1px solid #333;border-radius:14px;padding:10px 8px;text-align:center}
+.heat{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.heat img{width:56px;height:56px}
+.heat figcaption,.draw .t{font-size:10px;color:var(--lab-muted)}
+.note{margin-top:18px;color:var(--lab-muted);font-size:12px}
+@media(max-width:720px){.app{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.side{flex-direction:row;overflow-x:auto}}
