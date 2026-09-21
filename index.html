@@ -3,130 +3,281 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c0c0c">
 <title>Cazalotón Lab</title>
-<link rel="stylesheet" href="sprite.css?v=7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sprite.css?v=9">
 <style>
-:root{--bg:#0e0e0e;--card:#171717;--gold:#c9a227;--cream:#f3e6c0;--muted:#8a8476;--line:#2a2a2a}
+:root{
+  --bg:#0b0b0b;--card:#161616;--gold:#c9a227;--gold2:#e8c85a;--cream:#f3e6c0;
+  --muted:#8a8476;--line:#2a2a2a;--soft:#1b1b1b;--ink:#111;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--cream)}
-.wrap{max-width:1100px;margin:0 auto;padding:10px 12px 32px}
-header.top{display:flex;align-items:center;gap:10px;padding:8px 0 12px;border-bottom:1px solid var(--line)}
-.mark{width:40px;height:40px;border-radius:50%;border:3px solid var(--gold);display:grid;place-items:center;font-size:8px;font-weight:800;text-align:center;line-height:1.05;flex:none}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{font-family:Sora,system-ui,sans-serif;background:
+  radial-gradient(1200px 500px at 50% -80px,rgba(201,162,39,.08),transparent 60%),
+  var(--bg);color:var(--cream);line-height:1.4;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:8px 16px 48px}
+header.top{display:flex;align-items:center;gap:12px;padding:10px 0 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,11,11,.86);backdrop-filter:blur(14px);z-index:20}
+.mark{width:44px;height:44px;border-radius:50%;border:2.5px solid var(--gold);display:grid;place-items:center;font-size:8px;font-weight:800;text-align:center;line-height:1.05;flex:none;letter-spacing:.06em;box-shadow:0 0 0 4px rgba(201,162,39,.08)}
 .mark b{color:var(--gold);display:block}
-h1{font-size:20px} header.top p{font-size:11px;color:var(--muted)}
-.nobet-pill{margin-left:6px;font-size:10px;font-weight:800;background:var(--gold);color:#111;border-radius:999px;padding:3px 8px}
-.tabs{display:flex;gap:8px;overflow:auto;padding:12px 0}
-.tabs a{flex:none;text-decoration:none;color:var(--muted);border:1.5px solid #3a3a3a;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700}
-.tabs a.on{background:var(--gold);color:#111;border-color:var(--gold)}
-.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
-.lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:700}
-.last{display:flex;gap:10px;align-items:center}
-.num{font-size:18px;font-weight:800}.sub{font-size:12px;color:var(--muted)}
-.badge{display:inline-block;margin-top:4px;background:#3a2e0c;color:var(--gold);font-size:9px;font-weight:800;padding:3px 7px;border-radius:999px}
-.banner{margin:12px 0;text-align:center;background:#2a230f;border:1px solid #5a4a18;color:var(--gold);font-weight:800;letter-spacing:.12em;font-size:12px;padding:10px;border-radius:10px}
-.timeline{display:flex;gap:10px;overflow-x:auto;padding:4px 0 8px}
-.draw{flex:0 0 76px;text-align:center}
-.draw .t{font-size:10px;color:var(--muted);margin-bottom:4px}
-.draw .n{font-size:10px;font-weight:700;margin-top:4px}
-.split{display:grid;gap:8px;margin-top:8px}
-.bar{display:grid;grid-template-columns:40px 1fr 48px;gap:8px;align-items:center;margin:8px 0;font-size:12px}
-.track{height:8px;background:#111;border-radius:99px;overflow:hidden;margin-top:3px}
-.track i{display:block;height:100%;background:var(--gold)}
-.alert{font-size:12px;border:1px solid #3a2e0c;background:#16130a;border-radius:10px;padding:10px;margin:6px 0}
+h1{font-size:20px;letter-spacing:.01em}
+header.top p{font-size:11px;color:var(--muted);margin-top:1px}
+.nobet-pill{margin-left:6px;font-size:10px;font-weight:800;background:var(--gold);color:var(--ink);border-radius:999px;padding:3px 8px;vertical-align:middle}
+.clock{margin-left:auto;text-align:right;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--gold)}
+.clock small{display:block;color:var(--muted);font-family:Sora,sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.live{display:inline-flex;align-items:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:#6fbf73;box-shadow:0 0 0 0 rgba(111,191,115,.7);animation:ping 1.8s ease-out infinite}
+.tabs{display:flex;gap:8px;overflow:auto;padding:12px 0 10px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;text-decoration:none;color:var(--muted);border:1.5px solid #3a3a3a;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;transition:background .25s,color .25s,border-color .25s,transform .2s,box-shadow .25s}
+.tabs a:hover{color:var(--cream);border-color:var(--gold);transform:translateY(-1px)}
+.tabs a.on{background:var(--gold);color:var(--ink);border-color:var(--gold);box-shadow:0 6px 18px rgba(201,162,39,.22)}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:linear-gradient(180deg,#191919,#141414);border:1px solid var(--line);border-radius:18px;padding:14px;transition:border-color .25s,transform .25s,box-shadow .25s}
+.card:hover{border-color:#3d3420;box-shadow:0 10px 28px rgba(0,0,0,.35);transform:translateY(-1px)}
+.lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700}
+.last{display:flex;gap:12px;align-items:center}
+.num{font-size:18px;font-weight:800;font-family:"JetBrains Mono",monospace}
+.sub{font-size:12px;color:var(--muted);margin-top:2px}
+.badge{display:inline-block;margin-top:6px;background:#3a2e0c;color:var(--gold);font-size:9px;font-weight:800;padding:3px 7px;border-radius:999px}
+.banner{margin:12px 0;text-align:center;background:linear-gradient(90deg,#2a230f,#3a2e0c 40%,#2a230f);border:1px solid #5a4a18;color:var(--gold);font-weight:800;letter-spacing:.16em;font-size:12px;padding:11px;border-radius:12px;position:relative;overflow:hidden}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,230,150,.18) 50%,transparent 70%);transform:translateX(-120%);animation:shine 4.2s ease-in-out infinite}
+.timeline{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.timeline::-webkit-scrollbar{height:4px}
+.timeline::-webkit-scrollbar-thumb{background:#3a3a3a;border-radius:99px}
+.draw{flex:0 0 86px;text-align:center;scroll-snap-align:start;background:var(--soft);border:1px solid transparent;border-radius:16px;padding:8px 6px;transition:transform .25s,border-color .25s,background .25s}
+.draw:hover{transform:translateY(-3px);border-color:#3d3420}
+.draw .t{font-size:10px;color:var(--muted);margin-bottom:6px;font-family:"JetBrains Mono",monospace}
+.draw .n{font-size:10px;font-weight:700;margin-top:6px}
+.draw.now{border-color:var(--gold);background:#1c1708;box-shadow:0 0 0 1px rgba(201,162,39,.25)}
+.draw.now .n{color:var(--gold)}
+.split{display:grid;gap:10px;margin-top:10px}
+.bar{display:grid;grid-template-columns:40px 1fr 52px;gap:8px;align-items:center;margin:10px 0 8px;font-size:12px}
+.bar span:last-child{font-family:"JetBrains Mono",monospace;color:var(--gold);font-weight:700;text-align:right}
+.track{height:8px;background:#111;border-radius:99px;overflow:hidden;margin-top:4px;border:1px solid #222}
+.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:99px;transition:width 1.15s cubic-bezier(.22,1,.36,1)}
+.alert{font-size:12px;border:1px solid #3a2e0c;background:#16130a;border-radius:12px;padding:10px 12px;margin:8px 0;transition:transform .2s,border-color .2s}
+.alert:hover{transform:translateX(3px);border-color:#5a4a18}
 .alert b{display:block;color:var(--gold);margin-bottom:2px}
-.zoo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.zoo .row{display:flex;align-items:center;gap:8px;font-size:12px}
-.foot{color:var(--muted);font-size:11px;margin-top:14px}
-@media(min-width:760px){.kpis{grid-template-columns:1.3fr 1fr 1fr 1fr}.split{grid-template-columns:1.2fr 1fr}.zoo{grid-template-columns:1fr 1fr 1fr 1fr}}
+.tools{display:flex;gap:8px;align-items:center;margin:0 0 10px}
+.tools input{flex:1;min-width:0;background:#111;border:1px solid #2f2f2f;color:var(--cream);border-radius:999px;padding:8px 12px;font:inherit;font-size:13px;outline:none;transition:border-color .2s}
+.tools input:focus{border-color:var(--gold)}
+.hint{font-size:11px;color:var(--muted);white-space:nowrap}
+.zoo{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.zoo .row{display:flex;align-items:center;gap:8px;font-size:12px;padding:8px;border-radius:14px;background:var(--soft);border:1px solid transparent;transition:border-color .2s,transform .2s,background .2s,opacity .2s;cursor:default}
+.zoo .row:hover{border-color:#3d3420;transform:translateY(-1px);background:#1f1c14}
+.zoo .row.hit{border-color:var(--gold);background:#1c1708}
+.zoo .row.hide{display:none}
+.foot{color:var(--muted);font-size:11px;margin-top:18px;line-height:1.55}
+.ico{transition:transform .28s cubic-bezier(.22,1,.36,1),box-shadow .28s;box-shadow:0 2px 10px rgba(0,0,0,.45)}
+.ico:hover{transform:scale(1.08) rotate(-2deg)}
+.pulse{position:relative}
+.pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(201,162,39,.55);animation:ring 2s ease-out infinite;pointer-events:none}
+.fade{opacity:0;transform:translateY(12px);animation:up .6s cubic-bezier(.22,1,.36,1) forwards}
+.fade:nth-child(2){animation-delay:.07s}
+.fade:nth-child(3){animation-delay:.14s}
+.fade:nth-child(4){animation-delay:.21s}
+@keyframes up{to{opacity:1;transform:none}}
+@keyframes ping{70%,100%{box-shadow:0 0 0 8px transparent}}
+@keyframes ring{0%{transform:scale(.92);opacity:.7}100%{transform:scale(1.18);opacity:0}}
+@keyframes shine{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@media(min-width:760px){
+  .kpis{grid-template-columns:1.4fr 1fr 1fr 1fr}
+  .split{grid-template-columns:1.2fr 1fr}
+  .zoo{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:640px){
+  .clock{display:none}
+  header.top{gap:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .fade,.track i,.ico,.card,.draw,.tabs a,.zoo .row,.banner::after,.dot,.pulse::after{animation:none!important;transition:none!important;opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><div class="mark">CAZ<b>LAB</b></div>
-<div><h1>Cazalotón Lab <span class="nobet-pill">NO BET</span></h1><p>Investigación · Caracas UTC-4</p></div></header>
-<nav class="tabs"><a class="on" href="#hoy">Hoy</a><a href="#historial">Sorteos</a><a href="#forecasts">Forecast</a><a href="#fallos">Fallos</a><a href="#animalitos">38</a></nav>
+<header class="top">
+  <div class="mark">CAZ<b>LAB</b></div>
+  <div>
+    <h1>Cazalotón Lab <span class="nobet-pill">NO BET</span></h1>
+    <p>Investigación · Caracas UTC-4</p>
+  </div>
+  <div class="clock">
+    <span class="live"><span class="dot"></span><span id="clk">--:--:--</span></span>
+    <small>hora Caracas</small>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <a class="on" href="#hoy">Hoy</a>
+  <a href="#historial">Sorteos</a>
+  <a href="#forecasts">Forecast</a>
+  <a href="#fallos">Fallos</a>
+  <a href="#animalitos">38</a>
+</nav>
+
 <section class="kpis" id="hoy">
-<article class="card last"><span class="ico lg a-29"></span><div><div class="lbl">Último sorteo</div><div class="num">29 ELEFANTE</div><div class="sub">19:00</div><span class="badge">OFFICIAL_CONFIRMED</span></div></article>
-<article class="card"><div class="lbl">Próximo cerrado</div><div class="num">20:00</div><div class="sub">Día de sorteos cerrado</div></article>
-<article class="card"><div class="lbl">Hits Top-3</div><div class="num">—</div><div class="sub">sin score prospectivo</div></article>
-<article class="card"><div class="lbl">Log-loss</div><div class="num">n/d</div><div class="sub">research only</div></article>
+  <article class="card last fade">
+    <span class="ico lg a-29 pulse" title="29 ELEFANTE"></span>
+    <div>
+      <div class="lbl">Último sorteo</div>
+      <div class="num">29 ELEFANTE</div>
+      <div class="sub">19:00 · muestra UI</div>
+      <span class="badge">OFFICIAL_CONFIRMED</span>
+    </div>
+  </article>
+  <article class="card fade">
+    <div class="lbl">Próximo cerrado</div>
+    <div class="num">20:00</div>
+    <div class="sub">Día de sorteos cerrado</div>
+  </article>
+  <article class="card fade">
+    <div class="lbl">Hits Top-3</div>
+    <div class="num">—</div>
+    <div class="sub">sin score prospectivo</div>
+  </article>
+  <article class="card fade">
+    <div class="lbl">Log-loss</div>
+    <div class="num">n/d</div>
+    <div class="sub">research only</div>
+  </article>
 </section>
-<div class="banner">NO BET · RESEARCH ONLY</div>
+
+<div class="banner">NO BET · RESEARCH ONLY · SIN WALLET</div>
+
 <section class="card" id="historial">
-<div class="lbl">Línea de tiempo · 11 sorteos</div>
-<div class="timeline">
-<div class="draw"><div class="t">09:00</div><span class="ico a-00"></span><div class="n">00 BALLENA</div></div>
-<div class="draw"><div class="t">10:00</div><span class="ico a-0"></span><div class="n">0 DELFÍN</div></div>
-<div class="draw"><div class="t">11:00</div><span class="ico a-01"></span><div class="n">01 CARNERO</div></div>
-<div class="draw"><div class="t">12:00</div><span class="ico a-02"></span><div class="n">02 TORO</div></div>
-<div class="draw"><div class="t">13:00</div><span class="ico a-05"></span><div class="n">05 LEÓN</div></div>
-<div class="draw"><div class="t">14:00</div><span class="ico a-06"></span><div class="n">06 RANA</div></div>
-<div class="draw"><div class="t">15:00</div><span class="ico a-07"></span><div class="n">07 PERICO</div></div>
-<div class="draw"><div class="t">16:00</div><span class="ico a-08"></span><div class="n">08 RATÓN</div></div>
-<div class="draw"><div class="t">17:00</div><span class="ico a-09"></span><div class="n">09 ÁGUILA</div></div>
-<div class="draw"><div class="t">18:00</div><span class="ico a-10"></span><div class="n">10 TIGRE</div></div>
-<div class="draw"><div class="t">19:00</div><span class="ico a-29"></span><div class="n">29 ELEFANTE</div></div>
-</div></section>
+  <div class="lbl">Línea de tiempo · 11 sorteos</div>
+  <div class="timeline" id="tl">
+    <div class="draw"><div class="t">09:00</div><span class="ico a-00"></span><div class="n">00 BALLENA</div></div>
+    <div class="draw"><div class="t">10:00</div><span class="ico a-0"></span><div class="n">0 DELFÍN</div></div>
+    <div class="draw"><div class="t">11:00</div><span class="ico a-01"></span><div class="n">01 CARNERO</div></div>
+    <div class="draw"><div class="t">12:00</div><span class="ico a-02"></span><div class="n">02 TORO</div></div>
+    <div class="draw"><div class="t">13:00</div><span class="ico a-05"></span><div class="n">05 LEÓN</div></div>
+    <div class="draw"><div class="t">14:00</div><span class="ico a-06"></span><div class="n">06 RANA</div></div>
+    <div class="draw"><div class="t">15:00</div><span class="ico a-07"></span><div class="n">07 PERICO</div></div>
+    <div class="draw"><div class="t">16:00</div><span class="ico a-08"></span><div class="n">08 RATÓN</div></div>
+    <div class="draw"><div class="t">17:00</div><span class="ico a-09"></span><div class="n">09 ÁGUILA</div></div>
+    <div class="draw"><div class="t">18:00</div><span class="ico a-10"></span><div class="n">10 TIGRE</div></div>
+    <div class="draw now"><div class="t">19:00</div><span class="ico a-29"></span><div class="n">29 ELEFANTE</div></div>
+  </div>
+</section>
+
 <div class="split">
-<section class="card" id="forecasts">
-<div class="lbl">Forecast congelado · 19:00</div>
-<div class="bar"><span class="ico sm a-29"></span><div>29 ELEFANTE<div class="track"><i style="width:98%"></i></div></div><span>7.81%</span></div>
-<div class="bar"><span class="ico sm a-00"></span><div>00 BALLENA<div class="track"><i style="width:82%"></i></div></div><span>6.25%</span></div>
-<div class="bar"><span class="ico sm a-0"></span><div>0 DELFÍN<div class="track"><i style="width:70%"></i></div></div><span>5.47%</span></div>
-<div class="bar"><span class="ico sm a-02"></span><div>02 TORO<div class="track"><i style="width:60%"></i></div></div><span>4.69%</span></div>
-<div class="bar"><span class="ico sm a-01"></span><div>01 CARNERO<div class="track"><i style="width:54%"></i></div></div><span>4.30%</span></div>
-</section>
-<section class="card" id="fallos">
-<div class="lbl">Fallos · alertas de investigación</div>
-<div class="alert"><b>Sin score prospectivo</b>No hay freeze verificado + resultado OFFICIAL.</div>
-<div class="alert"><b>Overnight bloqueada</b>19:00 → 09:00 no es transición intradía.</div>
-<div class="alert"><b>Official ≠ train</b>Un official suelto no entra al Challenger.</div>
-</section>
+  <section class="card" id="forecasts">
+    <div class="lbl">Forecast congelado · 19:00</div>
+    <div class="bar"><span class="ico sm a-29"></span><div>29 ELEFANTE<div class="track"><i data-w="98"></i></div></div><span>7.81%</span></div>
+    <div class="bar"><span class="ico sm a-00"></span><div>00 BALLENA<div class="track"><i data-w="82"></i></div></div><span>6.25%</span></div>
+    <div class="bar"><span class="ico sm a-0"></span><div>0 DELFÍN<div class="track"><i data-w="70"></i></div></div><span>5.47%</span></div>
+    <div class="bar"><span class="ico sm a-02"></span><div>02 TORO<div class="track"><i data-w="60"></i></div></div><span>4.69%</span></div>
+    <div class="bar"><span class="ico sm a-01"></span><div>01 CARNERO<div class="track"><i data-w="54"></i></div></div><span>4.30%</span></div>
+  </section>
+  <section class="card" id="fallos">
+    <div class="lbl">Fallos · alertas de investigación</div>
+    <div class="alert"><b>Sin score prospectivo</b>No hay freeze verificado + resultado OFFICIAL.</div>
+    <div class="alert"><b>Overnight bloqueada</b>19:00 → 09:00 no es transición intradía.</div>
+    <div class="alert"><b>Official ≠ train</b>Un official suelto no entra al Challenger.</div>
+  </section>
 </div>
-<section class="card" id="animalitos" style="margin-top:8px">
-<div class="lbl">Catálogo 00–36 (38 fichas ilustradas)</div>
-<div class="zoo">
-<div class="row"><span class="ico sm a-00"></span>00 BALLENA</div>
-<div class="row"><span class="ico sm a-0"></span>0 DELFÍN</div>
-<div class="row"><span class="ico sm a-01"></span>01 CARNERO</div>
-<div class="row"><span class="ico sm a-02"></span>02 TORO</div>
-<div class="row"><span class="ico sm a-03"></span>03 CIEMPIÉS</div>
-<div class="row"><span class="ico sm a-04"></span>04 ALACRÁN</div>
-<div class="row"><span class="ico sm a-05"></span>05 LEÓN</div>
-<div class="row"><span class="ico sm a-06"></span>06 RANA</div>
-<div class="row"><span class="ico sm a-07"></span>07 PERICO</div>
-<div class="row"><span class="ico sm a-08"></span>08 RATÓN</div>
-<div class="row"><span class="ico sm a-09"></span>09 ÁGUILA</div>
-<div class="row"><span class="ico sm a-10"></span>10 TIGRE</div>
-<div class="row"><span class="ico sm a-11"></span>11 GATO</div>
-<div class="row"><span class="ico sm a-12"></span>12 CABALLO</div>
-<div class="row"><span class="ico sm a-13"></span>13 MONO</div>
-<div class="row"><span class="ico sm a-14"></span>14 PALOMA</div>
-<div class="row"><span class="ico sm a-15"></span>15 ZORRO</div>
-<div class="row"><span class="ico sm a-16"></span>16 OSO</div>
-<div class="row"><span class="ico sm a-17"></span>17 PAVO</div>
-<div class="row"><span class="ico sm a-18"></span>18 BURRO</div>
-<div class="row"><span class="ico sm a-19"></span>19 CHIVO</div>
-<div class="row"><span class="ico sm a-20"></span>20 COCHINO</div>
-<div class="row"><span class="ico sm a-21"></span>21 GALLO</div>
-<div class="row"><span class="ico sm a-22"></span>22 CAMELLO</div>
-<div class="row"><span class="ico sm a-23"></span>23 CEBRA</div>
-<div class="row"><span class="ico sm a-24"></span>24 IGUANA</div>
-<div class="row"><span class="ico sm a-25"></span>25 GALLINA</div>
-<div class="row"><span class="ico sm a-26"></span>26 VACA</div>
-<div class="row"><span class="ico sm a-27"></span>27 PERRO</div>
-<div class="row"><span class="ico sm a-28"></span>28 ZAMURO</div>
-<div class="row"><span class="ico sm a-29"></span>29 ELEFANTE</div>
-<div class="row"><span class="ico sm a-30"></span>30 CAIMÁN</div>
-<div class="row"><span class="ico sm a-31"></span>31 LAPA</div>
-<div class="row"><span class="ico sm a-32"></span>32 ARDILLA</div>
-<div class="row"><span class="ico sm a-33"></span>33 PESCADO</div>
-<div class="row"><span class="ico sm a-34"></span>34 VENADO</div>
-<div class="row"><span class="ico sm a-35"></span>35 JIRAFA</div>
-<div class="row"><span class="ico sm a-36"></span>36 CULEBRA</div>
-</div></section>
-<p class="foot">38 animalitos ilustrados. Laboratorio · NO BET · sin wallet.</p>
+
+<section class="card" id="animalitos" style="margin-top:10px">
+  <div class="lbl">Catálogo 00–36 · 38 fichas ilustradas</div>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Filtrar: león, 29, elefante…" autocomplete="off">
+    <span class="hint" id="count">38 / 38</span>
+  </div>
+  <div class="zoo" id="zoo">
+    <div class="row" data-q="00 ballena"><span class="ico sm a-00"></span>00 BALLENA</div>
+    <div class="row" data-q="0 delfin delfín"><span class="ico sm a-0"></span>0 DELFÍN</div>
+    <div class="row" data-q="01 carnero"><span class="ico sm a-01"></span>01 CARNERO</div>
+    <div class="row" data-q="02 toro"><span class="ico sm a-02"></span>02 TORO</div>
+    <div class="row" data-q="03 ciempies ciempiés"><span class="ico sm a-03"></span>03 CIEMPIÉS</div>
+    <div class="row" data-q="04 alacran alacrán"><span class="ico sm a-04"></span>04 ALACRÁN</div>
+    <div class="row" data-q="05 leon león"><span class="ico sm a-05"></span>05 LEÓN</div>
+    <div class="row" data-q="06 rana"><span class="ico sm a-06"></span>06 RANA</div>
+    <div class="row" data-q="07 perico"><span class="ico sm a-07"></span>07 PERICO</div>
+    <div class="row" data-q="08 raton ratón"><span class="ico sm a-08"></span>08 RATÓN</div>
+    <div class="row" data-q="09 aguila águila"><span class="ico sm a-09"></span>09 ÁGUILA</div>
+    <div class="row" data-q="10 tigre"><span class="ico sm a-10"></span>10 TIGRE</div>
+    <div class="row" data-q="11 gato"><span class="ico sm a-11"></span>11 GATO</div>
+    <div class="row" data-q="12 caballo"><span class="ico sm a-12"></span>12 CABALLO</div>
+    <div class="row" data-q="13 mono"><span class="ico sm a-13"></span>13 MONO</div>
+    <div class="row" data-q="14 paloma"><span class="ico sm a-14"></span>14 PALOMA</div>
+    <div class="row" data-q="15 zorro"><span class="ico sm a-15"></span>15 ZORRO</div>
+    <div class="row" data-q="16 oso"><span class="ico sm a-16"></span>16 OSO</div>
+    <div class="row" data-q="17 pavo"><span class="ico sm a-17"></span>17 PAVO</div>
+    <div class="row" data-q="18 burro"><span class="ico sm a-18"></span>18 BURRO</div>
+    <div class="row" data-q="19 chivo"><span class="ico sm a-19"></span>19 CHIVO</div>
+    <div class="row" data-q="20 cochino"><span class="ico sm a-20"></span>20 COCHINO</div>
+    <div class="row" data-q="21 gallo"><span class="ico sm a-21"></span>21 GALLO</div>
+    <div class="row" data-q="22 camello"><span class="ico sm a-22"></span>22 CAMELLO</div>
+    <div class="row" data-q="23 cebra"><span class="ico sm a-23"></span>23 CEBRA</div>
+    <div class="row" data-q="24 iguana"><span class="ico sm a-24"></span>24 IGUANA</div>
+    <div class="row" data-q="25 gallina"><span class="ico sm a-25"></span>25 GALLINA</div>
+    <div class="row" data-q="26 vaca"><span class="ico sm a-26"></span>26 VACA</div>
+    <div class="row" data-q="27 perro"><span class="ico sm a-27"></span>27 PERRO</div>
+    <div class="row" data-q="28 zamuro"><span class="ico sm a-28"></span>28 ZAMURO</div>
+    <div class="row hit" data-q="29 elefante"><span class="ico sm a-29"></span>29 ELEFANTE</div>
+    <div class="row" data-q="30 caiman caimán"><span class="ico sm a-30"></span>30 CAIMÁN</div>
+    <div class="row" data-q="31 lapa"><span class="ico sm a-31"></span>31 LAPA</div>
+    <div class="row" data-q="32 ardilla"><span class="ico sm a-32"></span>32 ARDILLA</div>
+    <div class="row" data-q="33 pescado"><span class="ico sm a-33"></span>33 PESCADO</div>
+    <div class="row" data-q="34 venado"><span class="ico sm a-34"></span>34 VENADO</div>
+    <div class="row" data-q="35 jirafa"><span class="ico sm a-35"></span>35 JIRAFA</div>
+    <div class="row" data-q="36 culebra"><span class="ico sm a-36"></span>36 CULEBRA</div>
+  </div>
+</section>
+<p class="foot">Cazalotón Lab no es la operadora. Sin wallet ni CTA de apuesta. Las barras y el último sorteo son muestra de UI de investigación. 38 animalitos ilustrados · NO BET.</p>
 </div>
+<script>
+(function(){
+  const tabs=[...document.querySelectorAll('#tabs a')];
+  const ids=tabs.map(a=>a.getAttribute('href').slice(1));
+  const setOn=id=>tabs.forEach(a=>a.classList.toggle('on', a.getAttribute('href')==='#'+id));
+  tabs.forEach(a=>a.addEventListener('click',()=>setOn(a.getAttribute('href').slice(1))));
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      const vis=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if(vis) setOn(vis.target.id);
+    },{rootMargin:'-18% 0px -62% 0px',threshold:[0,.25,.5]});
+    ids.forEach(id=>{const el=document.getElementById(id); if(el) io.observe(el);});
+  }
+  const grow=()=>document.querySelectorAll('.track i[data-w]').forEach(el=>{el.style.width=el.dataset.w+'%';});
+  const bars=document.getElementById('forecasts');
+  if('IntersectionObserver' in window && bars){
+    const b=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){grow();b.disconnect();}},{threshold:.2});
+    b.observe(bars);
+  } else grow();
+  requestAnimationFrame(()=>setTimeout(grow,120));
+  const tl=document.getElementById('tl');
+  const now=tl && tl.querySelector('.now');
+  if(now) setTimeout(()=>now.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}),280);
+  const clk=document.getElementById('clk');
+  const tick=()=>{
+    try{
+      clk.textContent=new Intl.DateTimeFormat('es-VE',{timeZone:'America/Caracas',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date());
+    }catch(e){clk.textContent=new Date().toTimeString().slice(0,8);}
+  };
+  tick(); setInterval(tick,1000);
+  const q=document.getElementById('q');
+  const rows=[...document.querySelectorAll('#zoo .row')];
+  const count=document.getElementById('count');
+  const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  q.addEventListener('input',()=>{
+    const v=norm(q.value.trim());
+    let n=0;
+    rows.forEach(r=>{
+      const ok=!v || norm(r.dataset.q+' '+r.textContent).includes(v);
+      r.classList.toggle('hide',!ok);
+      if(ok) n++;
+    });
+    count.textContent=n+' / 38';
+  });
+})();
+</script>
 </body>
 </html>
