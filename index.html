@@ -1,1 +1,148 @@
-<!DOCTYPE html><html lang="es-VE"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cazalotón Lab</title><link rel="icon" href="brand/favicon.svg" type="image/svg+xml"><style>:root{--bg:#121212;--card:#1c1c1c;--gold:#c9a227;--muted:#8a8476;--off:#d4a017;--line:#2e2e2e}*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#121212 url(ui/zebra-corner.svg) top right/140px no-repeat;color:#f2efe8}img{display:block}header.bar{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#121212}header.bar img.logo{width:36px;height:36px}.bar h1{font-size:15px}.bar p{font-size:10px;color:var(--muted)}.pill{margin-left:auto;font-size:9px;font-weight:800;border:1px solid #5a4a18;background:#2a230f;color:var(--gold);border-radius:999px;padding:5px 8px}nav.tabs{display:flex;gap:6px;overflow:auto;padding:8px 12px}nav.tabs a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-size:11px;font-weight:700;padding:7px 11px;border-radius:999px;background:#1a1a1a}nav.tabs a.on{color:#f3e6c0;background:#2a2a2a}main{padding:12px;max-width:1200px;margin:0 auto}.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}.wide{grid-column:1/-1}.lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}.num{font-family:ui-monospace,monospace;font-size:16px}.last{display:flex;gap:10px;align-items:center}.last img,.draw img,.zoo img,.bar img{width:52px;height:52px}.bar img{width:36px;height:36px}.badge{display:inline-block;font-size:9px;font-weight:800;padding:3px 6px;border-radius:999px;background:#3a2e0c;color:var(--off)}.nobet{text-align:center;border:1px solid #5a4a18;background:#2a230f;color:var(--gold);font-weight:800;font-size:11px;padding:9px;border-radius:12px;margin:10px 0}.timeline{display:flex;gap:8px;overflow-x:auto}.draw{flex:0 0 88px;text-align:center;background:#161616;border:1px solid var(--line);border-radius:12px;padding:8px 6px}.draw .t{font-size:10px;color:var(--muted)}.draw .n{font-size:10px;font-weight:700}.bar{display:grid;grid-template-columns:40px 1fr 46px;gap:8px;align-items:center;margin:7px 0;font-size:11px}.track{height:7px;background:#111;border-radius:99px;overflow:hidden}.track i{display:block;height:100%;background:var(--gold)}.alert{font-size:12px;background:#161616;border:1px solid var(--line);border-radius:10px;padding:9px;margin:6px 0}.zoo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.zoo figure{margin:0;text-align:center}.zoo figcaption{font-size:8px;color:var(--muted)}.foot{color:var(--muted);font-size:11px;padding:12px 0 28px}@media(min-width:800px){.kpis{grid-template-columns:2fr 1fr 1fr 1fr}.zoo{grid-template-columns:repeat(8,minmax(0,1fr))}}</style></head><body><header class="bar"><img class="logo" src="brand/lab-mark.svg" width="36" height="36" alt="Lab"><div><h1>Cazalotón Lab</h1><p>Investigación · Caracas UTC−4</p></div><span class="pill">NO BET</span></header><nav class="tabs"><a class="on" href="#hoy">Hoy</a><a href="#historial">Sorteos</a><a href="#forecasts">Forecast</a><a href="#fallos">Fallos</a><a href="#animalitos">38</a></nav><main><section class="kpis" id="hoy"><article class="card last wide"><img src="animals/29-elefante.svg" width="56" height="56" alt="Elefante"><div><div class="lbl">Último sorteo</div><div class="num">19:00 · 29 ELEFANTE</div><span class="badge">OFFICIAL_CONFIRMED</span></div></article><article class="card"><div class="lbl">Próximo</div><div class="num">cerrado</div></article><article class="card"><div class="lbl">Hits Top-3</div><div class="num">—</div></article></section><div class="nobet">NO BET · RESEARCH ONLY</div><section class="card" id="historial"><div class="lbl">Sorteos 09:00–19:00</div><div class="timeline" id="timeline"></div></section><section class="card" id="forecasts" style="margin-top:8px"><div class="lbl">Forecast congelado</div><div id="bars"></div></section><section class="card" id="fallos" style="margin-top:8px"><div class="lbl">Fallos</div><div class="alert">Sin score prospectivo.</div><div class="alert">19:00 → 09:00 bloqueada.</div></section><section class="card" id="animalitos" style="margin-top:8px"><div class="lbl">Animalitos 00–36</div><div class="zoo" id="zoo"></div></section><p class="foot">Pack de assets Lab en header, timeline, forecast y zoo.</p></main><script>const A=[["00","ballena","BALLENA"],["0","delfin","DELFÍN"],["01","carnero","CARNERO"],["02","toro","TORO"],["03","ciempies","CIEMPIÉS"],["04","alacran","ALACRÁN"],["05","leon","LEÓN"],["06","rana","RANA"],["07","perico","PERICO"],["08","raton","RATÓN"],["09","aguila","ÁGUILA"],["10","tigre","TIGRE"],["11","gato","GATO"],["12","caballo","CABALLO"],["13","mono","MONO"],["14","paloma","PALOMA"],["15","zorro","ZORRO"],["16","oso","OSO"],["17","pavo","PAVO"],["18","burro","BURRO"],["19","chivo","CHIVO"],["20","cochino","COCHINO"],["21","gallo","GALLO"],["22","camello","CAMELLO"],["23","cebra","CEBRA"],["24","iguana","IGUANA"],["25","gallina","GALLINA"],["26","vaca","VACA"],["27","perro","PERRO"],["28","zamuro","ZAMURO"],["29","elefante","ELEFANTE"],["30","caiman","CAIMÁN"],["31","lapa","LAPA"],["32","ardilla","ARDILLA"],["33","pescado","PESCADO"],["34","venado","VENADO"],["35","jirafa","JIRAFA"],["36","culebra","CULEBRA"]];const src=(id,s)=>`animals/${id}-${s}.svg`;const hours=["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"];const demo=[0,1,2,3,6,7,8,9,10,11,30];document.getElementById("timeline").innerHTML=hours.map((h,i)=>{const [id,s,n]=A[demo[i]];return `<div class="draw"><div class="t">${h}</div><img src="${src(id,s)}" width="52" height="52" alt=""><div class="n">${id} ${n}</div></div>`}).join("");const top=[[30,7.81],[0,7.32],[1,6.98],[3,6.71],[2,6.35]];document.getElementById("bars").innerHTML=top.map(([i,p])=>{const [id,s,n]=A[i];return `<div class="bar"><img src="${src(id,s)}" width="36" height="36" alt=""><div>${id} ${n}<div class="track"><i style="width:${p/8*100}%"></i></div></div><span>${p.toFixed(2)}%</span></div>`}).join("");document.getElementById("zoo").innerHTML=A.map(([id,s,n])=>`<figure><img src="${src(id,s)}" width="56" height="56" alt=""><figcaption>${id} ${n}</figcaption></figure>`).join("");</script></body></html>
+<!DOCTYPE html>
+<html lang="es-VE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cazalotón Lab</title>
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#121212;--card:#1c1c1c;--gold:#c9a227;--muted:#8a8476;--off:#d4a017;--line:#2e2e2e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#121212;color:#f2efe8}
+img{display:block;max-width:100%}
+header.bar{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#121212;z-index:9}
+header.bar img.logo{width:36px;height:36px;flex:none}
+.bar h1{font-size:15px}.bar p{font-size:10px;color:var(--muted)}
+.pill{margin-left:auto;font-size:9px;font-weight:800;border:1px solid #5a4a18;background:#2a230f;color:var(--gold);border-radius:999px;padding:5px 8px}
+nav.tabs{display:flex;gap:6px;overflow:auto;padding:8px 12px}
+nav.tabs a{flex:none;text-decoration:none;color:var(--muted);font-size:11px;font-weight:700;padding:7px 11px;border-radius:999px;background:#1a1a1a}
+nav.tabs a.on{color:#f3e6c0;background:#2a2a2a}
+main{padding:12px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px}
+.wide{grid-column:1/-1}
+.lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.num{font-family:ui-monospace,monospace;font-size:16px}
+.last{display:flex;gap:10px;align-items:center}
+.last img{width:56px;height:56px;flex:none}
+.badge{display:inline-block;font-size:9px;font-weight:800;padding:3px 6px;border-radius:999px;background:#3a2e0c;color:var(--off)}
+.nobet{text-align:center;border:1px solid #5a4a18;background:#2a230f;color:var(--gold);font-weight:800;font-size:11px;padding:9px;border-radius:12px;margin:10px 0}
+.timeline{display:flex;gap:8px;overflow-x:auto}
+.draw{flex:0 0 88px;text-align:center;background:#161616;border:1px solid var(--line);border-radius:12px;padding:8px 6px}
+.draw img{width:52px;height:52px;margin:4px auto}
+.draw .t{font-size:10px;color:var(--muted)}.draw .n{font-size:10px;font-weight:700}
+.bar{display:grid;grid-template-columns:40px 1fr 46px;gap:8px;align-items:center;margin:7px 0;font-size:11px}
+.bar img{width:36px;height:36px}
+.track{height:7px;background:#111;border-radius:99px;overflow:hidden}.track i{display:block;height:100%;background:var(--gold)}
+.alert{font-size:12px;background:#161616;border:1px solid var(--line);border-radius:10px;padding:9px;margin:6px 0}
+.zoo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.zoo figure{margin:0;text-align:center}
+.zoo img{width:56px;height:56px;margin:0 auto}
+.zoo figcaption{font-size:8px;color:var(--muted);margin-top:3px}
+.foot{color:var(--muted);font-size:11px;padding:8px 0 28px}
+@media(min-width:800px){.kpis{grid-template-columns:2fr 1fr 1fr}.zoo{grid-template-columns:repeat(8,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <img class="logo" src="brand/lab-mark.svg" width="36" height="36" alt="Lab">
+  <div><h1>Cazalotón Lab</h1><p>Investigación · Caracas UTC−4</p></div>
+  <span class="pill">NO BET</span>
+</header>
+<nav class="tabs">
+  <a class="on" href="#hoy">Hoy</a>
+  <a href="#historial">Sorteos</a>
+  <a href="#forecasts">Forecast</a>
+  <a href="#fallos">Fallos</a>
+  <a href="#animalitos">38</a>
+</nav>
+<main>
+<section class="kpis" id="hoy">
+  <article class="card last wide">
+    <img src="animals/29-elefante.svg" width="56" height="56" alt="Elefante">
+    <div>
+      <div class="lbl">Último sorteo</div>
+      <div class="num">19:00 · 29 ELEFANTE</div>
+      <span class="badge">OFFICIAL_CONFIRMED</span>
+    </div>
+  </article>
+  <article class="card"><div class="lbl">Próximo</div><div class="num">cerrado</div></article>
+  <article class="card"><div class="lbl">Hits Top-3</div><div class="num">—</div></article>
+</section>
+<div class="nobet">NO BET · RESEARCH ONLY</div>
+<section class="card" id="historial">
+  <div class="lbl">Sorteos 09:00–19:00</div>
+  <div class="timeline">
+<div class="draw"><div class="t">09:00</div><img src="animals/00-ballena.svg" width="52" height="52" alt=""><div class="n">00 BALLENA</div></div>
+<div class="draw"><div class="t">10:00</div><img src="animals/0-delfin.svg" width="52" height="52" alt=""><div class="n">0 DELFÍN</div></div>
+<div class="draw"><div class="t">11:00</div><img src="animals/01-carnero.svg" width="52" height="52" alt=""><div class="n">01 CARNERO</div></div>
+<div class="draw"><div class="t">12:00</div><img src="animals/02-toro.svg" width="52" height="52" alt=""><div class="n">02 TORO</div></div>
+<div class="draw"><div class="t">13:00</div><img src="animals/05-leon.svg" width="52" height="52" alt=""><div class="n">05 LEÓN</div></div>
+<div class="draw"><div class="t">14:00</div><img src="animals/06-rana.svg" width="52" height="52" alt=""><div class="n">06 RANA</div></div>
+<div class="draw"><div class="t">15:00</div><img src="animals/07-perico.svg" width="52" height="52" alt=""><div class="n">07 PERICO</div></div>
+<div class="draw"><div class="t">16:00</div><img src="animals/08-raton.svg" width="52" height="52" alt=""><div class="n">08 RATÓN</div></div>
+<div class="draw"><div class="t">17:00</div><img src="animals/09-aguila.svg" width="52" height="52" alt=""><div class="n">09 ÁGUILA</div></div>
+<div class="draw"><div class="t">18:00</div><img src="animals/10-tigre.svg" width="52" height="52" alt=""><div class="n">10 TIGRE</div></div>
+<div class="draw"><div class="t">19:00</div><img src="animals/29-elefante.svg" width="52" height="52" alt=""><div class="n">29 ELEFANTE</div></div>
+  </div>
+</section>
+<section class="card" id="forecasts">
+  <div class="lbl">Forecast congelado</div>
+<div class="bar"><img src="animals/29-elefante.svg" width="36" height="36" alt=""><div>29 ELEFANTE<div class="track"><i style="width:98%"></i></div></div><span>7.81%</span></div>
+<div class="bar"><img src="animals/00-ballena.svg" width="36" height="36" alt=""><div>00 BALLENA<div class="track"><i style="width:92%"></i></div></div><span>7.32%</span></div>
+<div class="bar"><img src="animals/0-delfin.svg" width="36" height="36" alt=""><div>0 DELFÍN<div class="track"><i style="width:87%"></i></div></div><span>6.98%</span></div>
+<div class="bar"><img src="animals/02-toro.svg" width="36" height="36" alt=""><div>02 TORO<div class="track"><i style="width:84%"></i></div></div><span>6.71%</span></div>
+<div class="bar"><img src="animals/01-carnero.svg" width="36" height="36" alt=""><div>01 CARNERO<div class="track"><i style="width:79%"></i></div></div><span>6.35%</span></div>
+</section>
+<section class="card" id="fallos">
+  <div class="lbl">Fallos</div>
+  <div class="alert">Sin score prospectivo.</div>
+  <div class="alert">19:00 → 09:00 bloqueada.</div>
+</section>
+<section class="card" id="animalitos">
+  <div class="lbl">Animalitos 00–36</div>
+  <div class="zoo">
+<figure><img src="animals/00-ballena.svg" width="56" height="56" alt=""><figcaption>00 BALLENA</figcaption></figure>
+<figure><img src="animals/0-delfin.svg" width="56" height="56" alt=""><figcaption>0 DELFÍN</figcaption></figure>
+<figure><img src="animals/01-carnero.svg" width="56" height="56" alt=""><figcaption>01 CARNERO</figcaption></figure>
+<figure><img src="animals/02-toro.svg" width="56" height="56" alt=""><figcaption>02 TORO</figcaption></figure>
+<figure><img src="animals/03-ciempies.svg" width="56" height="56" alt=""><figcaption>03 CIEMPIÉS</figcaption></figure>
+<figure><img src="animals/04-alacran.svg" width="56" height="56" alt=""><figcaption>04 ALACRÁN</figcaption></figure>
+<figure><img src="animals/05-leon.svg" width="56" height="56" alt=""><figcaption>05 LEÓN</figcaption></figure>
+<figure><img src="animals/06-rana.svg" width="56" height="56" alt=""><figcaption>06 RANA</figcaption></figure>
+<figure><img src="animals/07-perico.svg" width="56" height="56" alt=""><figcaption>07 PERICO</figcaption></figure>
+<figure><img src="animals/08-raton.svg" width="56" height="56" alt=""><figcaption>08 RATÓN</figcaption></figure>
+<figure><img src="animals/09-aguila.svg" width="56" height="56" alt=""><figcaption>09 ÁGUILA</figcaption></figure>
+<figure><img src="animals/10-tigre.svg" width="56" height="56" alt=""><figcaption>10 TIGRE</figcaption></figure>
+<figure><img src="animals/11-gato.svg" width="56" height="56" alt=""><figcaption>11 GATO</figcaption></figure>
+<figure><img src="animals/12-caballo.svg" width="56" height="56" alt=""><figcaption>12 CABALLO</figcaption></figure>
+<figure><img src="animals/13-mono.svg" width="56" height="56" alt=""><figcaption>13 MONO</figcaption></figure>
+<figure><img src="animals/14-paloma.svg" width="56" height="56" alt=""><figcaption>14 PALOMA</figcaption></figure>
+<figure><img src="animals/15-zorro.svg" width="56" height="56" alt=""><figcaption>15 ZORRO</figcaption></figure>
+<figure><img src="animals/16-oso.svg" width="56" height="56" alt=""><figcaption>16 OSO</figcaption></figure>
+<figure><img src="animals/17-pavo.svg" width="56" height="56" alt=""><figcaption>17 PAVO</figcaption></figure>
+<figure><img src="animals/18-burro.svg" width="56" height="56" alt=""><figcaption>18 BURRO</figcaption></figure>
+<figure><img src="animals/19-chivo.svg" width="56" height="56" alt=""><figcaption>19 CHIVO</figcaption></figure>
+<figure><img src="animals/20-cochino.svg" width="56" height="56" alt=""><figcaption>20 COCHINO</figcaption></figure>
+<figure><img src="animals/21-gallo.svg" width="56" height="56" alt=""><figcaption>21 GALLO</figcaption></figure>
+<figure><img src="animals/22-camello.svg" width="56" height="56" alt=""><figcaption>22 CAMELLO</figcaption></figure>
+<figure><img src="animals/23-cebra.svg" width="56" height="56" alt=""><figcaption>23 CEBRA</figcaption></figure>
+<figure><img src="animals/24-iguana.svg" width="56" height="56" alt=""><figcaption>24 IGUANA</figcaption></figure>
+<figure><img src="animals/25-gallina.svg" width="56" height="56" alt=""><figcaption>25 GALLINA</figcaption></figure>
+<figure><img src="animals/26-vaca.svg" width="56" height="56" alt=""><figcaption>26 VACA</figcaption></figure>
+<figure><img src="animals/27-perro.svg" width="56" height="56" alt=""><figcaption>27 PERRO</figcaption></figure>
+<figure><img src="animals/28-zamuro.svg" width="56" height="56" alt=""><figcaption>28 ZAMURO</figcaption></figure>
+<figure><img src="animals/29-elefante.svg" width="56" height="56" alt=""><figcaption>29 ELEFANTE</figcaption></figure>
+<figure><img src="animals/30-caiman.svg" width="56" height="56" alt=""><figcaption>30 CAIMÁN</figcaption></figure>
+<figure><img src="animals/31-lapa.svg" width="56" height="56" alt=""><figcaption>31 LAPA</figcaption></figure>
+<figure><img src="animals/32-ardilla.svg" width="56" height="56" alt=""><figcaption>32 ARDILLA</figcaption></figure>
+<figure><img src="animals/33-pescado.svg" width="56" height="56" alt=""><figcaption>33 PESCADO</figcaption></figure>
+<figure><img src="animals/34-venado.svg" width="56" height="56" alt=""><figcaption>34 VENADO</figcaption></figure>
+<figure><img src="animals/35-jirafa.svg" width="56" height="56" alt=""><figcaption>35 JIRAFA</figcaption></figure>
+<figure><img src="animals/36-culebra.svg" width="56" height="56" alt=""><figcaption>36 CULEBRA</figcaption></figure>
+  </div>
+</section>
+<p class="foot">Laboratorio. Sin wallet.</p>
+</main>
+</body>
+</html>
