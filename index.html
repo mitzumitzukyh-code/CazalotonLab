@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="sprite.css?v=9">
+<link rel="stylesheet" href="sprite.css?v=10">
 <style>
 :root{
   --bg:#0b0b0b;--card:#161616;--gold:#c9a227;--gold2:#e8c85a;--cream:#f3e6c0;
@@ -26,7 +26,7 @@ header.top{display:flex;align-items:center;gap:12px;padding:10px 0 12px;border-b
 h1{font-size:20px;letter-spacing:.01em}
 header.top p{font-size:11px;color:var(--muted);margin-top:1px}
 .nobet-pill{margin-left:6px;font-size:10px;font-weight:800;background:var(--gold);color:var(--ink);border-radius:999px;padding:3px 8px;vertical-align:middle}
-.clock{margin-left:auto;text-align:right;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--gold)}
+.clock{margin-left:auto;text-align:right;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--gold);white-space:nowrap}
 .clock small{display:block;color:var(--muted);font-family:Sora,sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .live{display:inline-flex;align-items:center;gap:6px}
 .dot{width:7px;height:7px;border-radius:50%;background:#6fbf73;box-shadow:0 0 0 0 rgba(111,191,115,.7);animation:ping 1.8s ease-out infinite}
@@ -48,9 +48,9 @@ header.top p{font-size:11px;color:var(--muted);margin-top:1px}
 .timeline{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
 .timeline::-webkit-scrollbar{height:4px}
 .timeline::-webkit-scrollbar-thumb{background:#3a3a3a;border-radius:99px}
-.draw{flex:0 0 86px;text-align:center;scroll-snap-align:start;background:var(--soft);border:1px solid transparent;border-radius:16px;padding:8px 6px;transition:transform .25s,border-color .25s,background .25s}
+.draw{flex:0 0 92px;text-align:center;scroll-snap-align:start;background:var(--soft);border:1px solid transparent;border-radius:16px;padding:8px 6px;transition:transform .25s,border-color .25s,background .25s}
 .draw:hover{transform:translateY(-3px);border-color:#3d3420}
-.draw .t{font-size:10px;color:var(--muted);margin-bottom:6px;font-family:"JetBrains Mono",monospace}
+.draw .t{font-size:9px;color:var(--muted);margin-bottom:6px;font-family:"JetBrains Mono",monospace}
 .draw .n{font-size:10px;font-weight:700;margin-top:6px}
 .draw.now{border-color:var(--gold);background:#1c1708;box-shadow:0 0 0 1px rgba(201,162,39,.25)}
 .draw.now .n{color:var(--gold)}
@@ -108,7 +108,7 @@ header.top p{font-size:11px;color:var(--muted);margin-top:1px}
     <p>Investigación · Caracas UTC-4</p>
   </div>
   <div class="clock">
-    <span class="live"><span class="dot"></span><span id="clk">--:--:--</span></span>
+    <span class="live"><span class="dot"></span><span id="clk">--:-- --</span></span>
     <small>hora Caracas</small>
   </div>
 </header>
@@ -127,13 +127,13 @@ header.top p{font-size:11px;color:var(--muted);margin-top:1px}
     <div>
       <div class="lbl">Último sorteo</div>
       <div class="num">29 ELEFANTE</div>
-      <div class="sub">19:00 · muestra UI</div>
+      <div class="sub">7:00 p.m. · muestra UI</div>
       <span class="badge">OFFICIAL_CONFIRMED</span>
     </div>
   </article>
   <article class="card fade">
     <div class="lbl">Próximo cerrado</div>
-    <div class="num">20:00</div>
+    <div class="num">8:00 p.m.</div>
     <div class="sub">Día de sorteos cerrado</div>
   </article>
   <article class="card fade">
@@ -153,23 +153,23 @@ header.top p{font-size:11px;color:var(--muted);margin-top:1px}
 <section class="card" id="historial">
   <div class="lbl">Línea de tiempo · 11 sorteos</div>
   <div class="timeline" id="tl">
-    <div class="draw"><div class="t">09:00</div><span class="ico a-00"></span><div class="n">00 BALLENA</div></div>
-    <div class="draw"><div class="t">10:00</div><span class="ico a-0"></span><div class="n">0 DELFÍN</div></div>
-    <div class="draw"><div class="t">11:00</div><span class="ico a-01"></span><div class="n">01 CARNERO</div></div>
-    <div class="draw"><div class="t">12:00</div><span class="ico a-02"></span><div class="n">02 TORO</div></div>
-    <div class="draw"><div class="t">13:00</div><span class="ico a-05"></span><div class="n">05 LEÓN</div></div>
-    <div class="draw"><div class="t">14:00</div><span class="ico a-06"></span><div class="n">06 RANA</div></div>
-    <div class="draw"><div class="t">15:00</div><span class="ico a-07"></span><div class="n">07 PERICO</div></div>
-    <div class="draw"><div class="t">16:00</div><span class="ico a-08"></span><div class="n">08 RATÓN</div></div>
-    <div class="draw"><div class="t">17:00</div><span class="ico a-09"></span><div class="n">09 ÁGUILA</div></div>
-    <div class="draw"><div class="t">18:00</div><span class="ico a-10"></span><div class="n">10 TIGRE</div></div>
-    <div class="draw now"><div class="t">19:00</div><span class="ico a-29"></span><div class="n">29 ELEFANTE</div></div>
+    <div class="draw"><div class="t">9:00 a.m.</div><span class="ico a-00"></span><div class="n">00 BALLENA</div></div>
+    <div class="draw"><div class="t">10:00 a.m.</div><span class="ico a-0"></span><div class="n">0 DELFÍN</div></div>
+    <div class="draw"><div class="t">11:00 a.m.</div><span class="ico a-01"></span><div class="n">01 CARNERO</div></div>
+    <div class="draw"><div class="t">12:00 m.</div><span class="ico a-02"></span><div class="n">02 TORO</div></div>
+    <div class="draw"><div class="t">1:00 p.m.</div><span class="ico a-05"></span><div class="n">05 LEÓN</div></div>
+    <div class="draw"><div class="t">2:00 p.m.</div><span class="ico a-06"></span><div class="n">06 RANA</div></div>
+    <div class="draw"><div class="t">3:00 p.m.</div><span class="ico a-07"></span><div class="n">07 PERICO</div></div>
+    <div class="draw"><div class="t">4:00 p.m.</div><span class="ico a-08"></span><div class="n">08 RATÓN</div></div>
+    <div class="draw"><div class="t">5:00 p.m.</div><span class="ico a-09"></span><div class="n">09 ÁGUILA</div></div>
+    <div class="draw"><div class="t">6:00 p.m.</div><span class="ico a-10"></span><div class="n">10 TIGRE</div></div>
+    <div class="draw now"><div class="t">7:00 p.m.</div><span class="ico a-29"></span><div class="n">29 ELEFANTE</div></div>
   </div>
 </section>
 
 <div class="split">
   <section class="card" id="forecasts">
-    <div class="lbl">Forecast congelado · 19:00</div>
+    <div class="lbl">Forecast congelado · 7:00 p.m.</div>
     <div class="bar"><span class="ico sm a-29"></span><div>29 ELEFANTE<div class="track"><i data-w="98"></i></div></div><span>7.81%</span></div>
     <div class="bar"><span class="ico sm a-00"></span><div>00 BALLENA<div class="track"><i data-w="82"></i></div></div><span>6.25%</span></div>
     <div class="bar"><span class="ico sm a-0"></span><div>0 DELFÍN<div class="track"><i data-w="70"></i></div></div><span>5.47%</span></div>
@@ -179,7 +179,7 @@ header.top p{font-size:11px;color:var(--muted);margin-top:1px}
   <section class="card" id="fallos">
     <div class="lbl">Fallos · alertas de investigación</div>
     <div class="alert"><b>Sin score prospectivo</b>No hay freeze verificado + resultado OFFICIAL.</div>
-    <div class="alert"><b>Overnight bloqueada</b>19:00 → 09:00 no es transición intradía.</div>
+    <div class="alert"><b>Overnight bloqueada</b>7:00 p.m. → 9:00 a.m. no es transición intradía.</div>
     <div class="alert"><b>Official ≠ train</b>Un official suelto no entra al Challenger.</div>
   </section>
 </div>
@@ -259,8 +259,8 @@ header.top p{font-size:11px;color:var(--muted);margin-top:1px}
   const clk=document.getElementById('clk');
   const tick=()=>{
     try{
-      clk.textContent=new Intl.DateTimeFormat('es-VE',{timeZone:'America/Caracas',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date());
-    }catch(e){clk.textContent=new Date().toTimeString().slice(0,8);}
+      clk.textContent=new Intl.DateTimeFormat('es-VE',{timeZone:'America/Caracas',hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true}).format(new Date());
+    }catch(e){clk.textContent=new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true});}
   };
   tick(); setInterval(tick,1000);
   const q=document.getElementById('q');
