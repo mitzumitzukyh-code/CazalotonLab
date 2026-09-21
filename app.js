@@ -1,15 +1,11 @@
-const FALLBACK=[
-  ["00","ballena","BALLENA"],["0","delfin","DELFÍN"],["01","carnero","CARNERO"],["02","toro","TORO"],
-  ["05","leon","LEÓN"],["06","rana","RANA"],["07","perico","PERICO"],["08","raton","RATÓN"],
-  ["09","aguila","ÁGUILA"],["10","tigre","TIGRE"],["29","elefante","ELEFANTE"]
-];
-function fig(id,slug,name){return `<figure class="draw"><img src="animals/${id}-${slug}.svg" alt="${name}"><figcaption>${id} ${name}</figcaption></figure>`}
-async function boot(){
-  const zoo=document.getElementById("zoo");
-  const tl=document.getElementById("timeline");
-  let animals=FALLBACK.map(([id,slug,name])=>({id,slug,name,file:`animals/${id}-${slug}.svg`}));
-  try{const r=await fetch("animals/manifest.json"); if(r.ok) animals=(await r.json()).animals;}catch(e){}
-  if(zoo) zoo.innerHTML=animals.map(a=>fig(a.id,a.slug,a.name)).join("");
-  if(tl) tl.innerHTML=animals.slice(0,11).map(a=>fig(a.id,a.slug,a.name)).join("");
+const ANIMALS=[["00","ballena","BALLENA"],["0","delfin","DELFÍN"],["01","carnero","CARNERO"],["02","toro","TORO"],["03","ciempies","CIEMPIÉS"],["04","alacran","ALACRÁN"],["05","leon","LEÓN"],["06","rana","RANA"],["07","perico","PERICO"],["08","raton","RATÓN"],["09","aguila","ÁGUILA"],["10","tigre","TIGRE"],["11","gato","GATO"],["12","caballo","CABALLO"],["13","mono","MONO"],["14","paloma","PALOMA"],["15","zorro","ZORRO"],["16","oso","OSO"],["17","pavo","PAVO"],["18","burro","BURRO"],["19","chivo","CHIVO"],["20","cochino","COCHINO"],["21","gallo","GALLO"],["22","camello","CAMELLO"],["23","cebra","CEBRA"],["24","iguana","IGUANA"],["25","gallina","GALLINA"],["26","vaca","VACA"],["27","perro","PERRO"],["28","zamuro","ZAMURO"],["29","elefante","ELEFANTE"],["30","caiman","CAIMÁN"],["31","lapa","LAPA"],["32","ardilla","ARDILLA"],["33","pescado","PESCADO"],["34","venado","VENADO"],["35","jirafa","JIRAFA"],["36","culebra","CULEBRA"]];
+const file=(id,slug)=>`animals/${id}-${slug}.svg`;
+const HOURS=["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"];
+function boot(){
+  document.getElementById("zoo").innerHTML=ANIMALS.map(([id,slug,name])=>`<figure><img src="${file(id,slug)}" alt="${name}"><figcaption>${id} ${name}</figcaption></figure>`).join("");
+  const demo=[["00","ballena","BALLENA"],["0","delfin","DELFÍN"],["01","carnero","CARNERO"],["02","toro","TORO"],["05","leon","LEÓN"],["06","rana","RANA"],["07","perico","PERICO"],["08","raton","RATÓN"],["09","aguila","ÁGUILA"],["10","tigre","TIGRE"],["29","elefante","ELEFANTE"]];
+  document.getElementById("timeline").innerHTML=HOURS.map((h,i)=>{const [id,slug,name]=demo[i];return `<div class="draw"><span>${h}</span><img src="${file(id,slug)}" alt=""><b>${id}</b><span>${name}</span></div>`;}).join("");
+  const top=[["29","elefante","ELEFANTE",78],["00","ballena","BALLENA",73],["0","delfin","DELFÍN",70],["02","toro","TORO",67],["01","carnero","CARNERO",64]];
+  document.getElementById("bars").innerHTML=top.map(([id,slug,name,w])=>`<div class="bar"><img src="${file(id,slug)}" alt=""><div><div>${id} ${name}</div><div class="track"><i style="width:${w}%"></i></div></div><span>${(w/10).toFixed(2)}%</span></div>`).join("");
 }
 boot();

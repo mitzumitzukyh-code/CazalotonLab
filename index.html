@@ -2,54 +2,62 @@
 <html lang="es-VE">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cazalotón Lab — investigación</title>
-  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cazalotón Lab</title>
   <link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
-    <aside class="side">
-      <img class="mark" src="brand/lab-mark.svg" alt="Cazalotón Lab">
-      <a class="nav-btn active" href="#hoy">Hoy</a>
-      <a class="nav-btn" href="#historial">Historial</a>
-      <a class="nav-btn" href="#forecasts">Forecasts</a>
-      <a class="nav-btn" href="#fallos">Fallos</a>
-      <a class="nav-btn" href="#animalitos">Animalitos</a>
-      <a class="nav-btn" href="#auditoria">Auditoría</a>
-    </aside>
-    <main class="main">
-      <header class="top">
-        <div class="brand-row"><div>
-          <h1>Dashboard de investigación</h1>
-          <div class="sub">Caracas (UTC−4) · research-only</div>
-        </div></div>
-        <div class="pills">
-          <span class="pill gold">NO BET / RESEARCH ONLY</span>
-          <span class="pill ok">● live UI</span>
+  <header class="topbar">
+    <img class="mark" src="brand/lab-mark.svg" alt="Lab">
+    <div>
+      <h1>Cazalotón Lab</h1>
+      <p>Investigación · Caracas UTC−4</p>
+    </div>
+    <span class="pill gold">NO BET</span>
+  </header>
+  <nav class="tabs">
+    <a href="#hoy" class="on">Hoy</a>
+    <a href="#historial">Sorteos</a>
+    <a href="#forecasts">Forecast</a>
+    <a href="#fallos">Fallos</a>
+    <a href="#animalitos">38</a>
+  </nav>
+  <main>
+    <section id="hoy" class="kpis">
+      <article class="card last">
+        <img src="animals/29-elefante.svg" alt="">
+        <div>
+          <small>Último (muestra UI)</small>
+          <strong>19:00 · 29 ELEFANTE</strong>
+          <em class="badge official">OFFICIAL_CONFIRMED</em>
         </div>
-      </header>
-      <section class="kpis" id="hoy">
-        <article class="card kpi-last">
-          <img src="animals/29-elefante.svg" alt="29 Elefante">
-          <div>
-            <h3>Último sorteo</h3>
-            <div class="kpi-num">19:00 — 29 ELEFANTE</div>
-            <span class="badge official">OFFICIAL_CONFIRMED</span>
-          </div>
-        </article>
-        <article class="card"><h3>Próximo</h3><div class="kpi-num">cerrado</div></article>
-        <article class="card"><h3>Hits Top-3</h3><div class="kpi-num">—</div><span class="badge pending">sin score prospectivo</span></article>
-        <article class="card"><h3>Log-loss</h3><div class="kpi-num">n/d</div></article>
-      </section>
-      <div class="nobet">NO BET</div>
-      <section class="card" id="historial"><h3>Línea de tiempo</h3>
-        <div class="timeline" id="timeline"></div>
-      </section>
-      <section class="card" id="animalitos" style="margin-top:14px"><h3>Animalitos</h3><div class="heat" id="zoo"></div></section>
-      <p class="note" id="auditoria">Cazalotón Lab no es la operadora. Sin wallet ni juega aquí. NO BET / RESEARCH ONLY.</p>
-    </main>
-  </div>
+      </article>
+      <article class="card"><small>Hits Top-3</small><b>—</b><em class="badge pending">sin score</em></article>
+      <article class="card"><small>Log-loss</small><b>n/d</b><em class="badge pending">research only</em></article>
+    </section>
+    <div class="nobet">LABORATORIO · NO BET · SIN WALLET</div>
+    <section class="card" id="historial">
+      <h2>Sorteos 09:00–19:00</h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+    <section class="card" id="forecasts">
+      <h2>Forecast congelado</h2>
+      <p class="muted">Champion · freeze antes del sorteo. Barras de maqueta, no pick de apuesta.</p>
+      <div id="bars"></div>
+    </section>
+    <section class="card" id="fallos">
+      <h2>Fallos</h2>
+      <div class="alert">Sin scores prospectivos verificados todavía.</div>
+      <div class="alert">Transición 19:00 → 09:00 bloqueada.</div>
+      <div class="alert">Official suelto no entrena al Challenger.</div>
+    </section>
+    <section class="card" id="animalitos">
+      <h2>Los 38</h2>
+      <div class="zoo" id="zoo"></div>
+    </section>
+    <p class="foot">No es la operadora. No hay “juega aquí”.</p>
+  </main>
   <script src="app.js"></script>
-</body></html>
+</body>
+</html>
