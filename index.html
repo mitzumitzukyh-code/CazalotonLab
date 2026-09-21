@@ -1,63 +1,86 @@
 <!DOCTYPE html>
 <html lang="es-VE">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Cazalotón Lab</title>
-  <link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cazalotón Lab</title>
+<style>
+:root{--bg:#121212;--card:#1c1c1c;--gold:#c9a227;--cream:#f3e6c0;--muted:#8a8476;--ok:#3dbb6a;--off:#d4a017;--bad:#d23a32;--line:#2e2e2e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,sans-serif;background:var(--bg);color:#f2efe8}
+svg{display:block}
+header.bar{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#121212f5;z-index:9}
+.logo{width:36px;height:36px;flex:0 0 36px}
+.bar h1{font-size:15px;line-height:1.1}.bar p{font-size:10px;color:var(--muted)}
+.pills{margin-left:auto;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.pill{font-size:9px;font-weight:800;border:1px solid #3a3a3a;border-radius:999px;padding:5px 8px;color:var(--muted)}
+.pill.gold{color:var(--gold);border-color:#5a4a18;background:#2a230f}.pill.ok{color:var(--ok)}
+nav.tabs{display:flex;gap:6px;overflow-x:auto;padding:8px 12px;border-bottom:1px solid var(--line)}
+nav.tabs a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-size:11px;font-weight:700;padding:7px 11px;border-radius:999px;background:#1a1a1a}
+nav.tabs a.on{color:var(--cream);background:#2a2a2a}
+main{padding:12px;max-width:1200px;margin:0 auto}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.card.wide{grid-column:1/-1}
+.card h2,.lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.num{font-family:ui-monospace,monospace;font-size:18px;font-weight:700}
+.last{display:flex;gap:10px;align-items:center}
+.badge{display:inline-block;margin-top:4px;font-size:9px;font-weight:800;padding:3px 6px;border-radius:999px}
+.official{background:#3a2e0c;color:var(--off)}.pending{background:#2a2a2a;color:#9a9a9a}
+.conflict{background:#3a1515;color:var(--bad)}
+.nobet{text-align:center;border:1px solid #5a4a18;background:#2a230f;color:var(--gold);font-weight:800;letter-spacing:.14em;font-size:11px;padding:9px;border-radius:12px;margin:8px 0 12px}
+.timeline{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+.draw{flex:0 0 86px;text-align:center;background:#161616;border:1px solid var(--line);border-radius:12px;padding:8px 6px}
+.draw .t{font-size:10px;color:var(--muted);font-family:ui-monospace,monospace}
+.draw .n{font-size:10px;font-weight:700;margin-top:4px}
+.chip{width:48px;height:48px;margin:6px auto 0;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#111}
+.grid3{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:44px 1fr 44px;gap:8px;align-items:center;margin:7px 0;font-size:11px}
+.track{height:7px;background:#111;border-radius:99px;overflow:hidden}.track i{display:block;height:100%;background:var(--gold)}
+.alert{font-size:12px;background:#161616;border:1px solid var(--line);border-radius:10px;padding:9px;margin:6px 0}.alert b{display:block;margin-bottom:2px}
+.zoo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.zoo figure{margin:0;text-align:center}.zoo figcaption{font-size:8px;color:var(--muted);margin-top:4px;line-height:1.2}
+.foot{color:var(--muted);font-size:11px;padding:10px 2px 28px}
+@media(min-width:800px){.kpis{grid-template-columns:2fr 1fr 1fr 1fr 1fr}.grid3{grid-template-columns:1.2fr 1fr .9fr}.zoo{grid-template-columns:repeat(8,minmax(0,1fr))}}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <img class="mark" src="brand/lab-mark.svg" alt="Lab">
-    <div>
-      <h1>Cazalotón Lab</h1>
-      <p>Investigación · Caracas UTC−4</p>
-    </div>
-    <span class="pill gold">NO BET</span>
-  </header>
-  <nav class="tabs">
-    <a href="#hoy" class="on">Hoy</a>
-    <a href="#historial">Sorteos</a>
-    <a href="#forecasts">Forecast</a>
-    <a href="#fallos">Fallos</a>
-    <a href="#animalitos">38</a>
-  </nav>
-  <main>
-    <section id="hoy" class="kpis">
-      <article class="card last">
-        <img src="animals/29-elefante.svg" alt="">
-        <div>
-          <small>Último (muestra UI)</small>
-          <strong>19:00 · 29 ELEFANTE</strong>
-          <em class="badge official">OFFICIAL_CONFIRMED</em>
-        </div>
-      </article>
-      <article class="card"><small>Hits Top-3</small><b>—</b><em class="badge pending">sin score</em></article>
-      <article class="card"><small>Log-loss</small><b>n/d</b><em class="badge pending">research only</em></article>
-    </section>
-    <div class="nobet">LABORATORIO · NO BET · SIN WALLET</div>
-    <section class="card" id="historial">
-      <h2>Sorteos 09:00–19:00</h2>
-      <div class="timeline" id="timeline"></div>
-    </section>
-    <section class="card" id="forecasts">
-      <h2>Forecast congelado</h2>
-      <p class="muted">Champion · freeze antes del sorteo. Barras de maqueta, no pick de apuesta.</p>
-      <div id="bars"></div>
-    </section>
-    <section class="card" id="fallos">
-      <h2>Fallos</h2>
-      <div class="alert">Sin scores prospectivos verificados todavía.</div>
-      <div class="alert">Transición 19:00 → 09:00 bloqueada.</div>
-      <div class="alert">Official suelto no entrena al Challenger.</div>
-    </section>
-    <section class="card" id="animalitos">
-      <h2>Los 38</h2>
-      <div class="zoo" id="zoo"></div>
-    </section>
-    <p class="foot">No es la operadora. No hay “juega aquí”.</p>
-  </main>
-  <script src="app.js"></script>
-</body>
-</html>
+<header class="bar">
+  <svg class="logo" viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="#111" stroke="#c9a227" stroke-width="2"/><text x="18" y="16" text-anchor="middle" font-size="5" fill="#f3e6c0" font-weight="800">CAZ</text><text x="18" y="24" text-anchor="middle" font-size="6" fill="#c9a227" font-weight="800">LAB</text></svg>
+  <div><h1>Cazalotón Lab</h1><p>dom 20 sep 2026 · Caracas UTC−4</p></div>
+  <div class="pills"><span class="pill gold">NO BET</span><span class="pill ok">UI live</span></div>
+</header>
+<nav class="tabs">
+  <a class="on" href="#hoy">Hoy</a><a href="#historial">Sorteos</a><a href="#forecasts">Forecast</a><a href="#fallos">Fallos</a><a href="#animalitos">38</a>
+</nav>
+<main>
+  <section class="kpis" id="hoy">
+    <article class="card last wide"><div class="chip" style="background:#8b93a0;margin:0">29</div><div><div class="lbl">Último sorteo · muestra UI</div><div class="num">19:00 · 29 ELEFANTE</div><span class="badge official">OFFICIAL_CONFIRMED</span></div></article>
+    <article class="card"><div class="lbl">Próximo</div><div class="num">cerrado</div><span class="badge pending">día fin</span></article>
+    <article class="card"><div class="lbl">Frozen</div><div class="num">—</div><span class="badge pending">demo</span></article>
+    <article class="card"><div class="lbl">Hits Top-3</div><div class="num">—</div><span class="badge pending">sin score</span></article>
+    <article class="card"><div class="lbl">Log-loss</div><div class="num">n/d</div><span class="badge pending">NO BET</span></article>
+  </section>
+  <div class="nobet">NO BET · RESEARCH ONLY</div>
+  <section class="card" id="historial"><h2>Línea de sorteos 09:00–19:00</h2><div class="timeline" id="timeline"></div></section>
+  <div class="grid3" style="margin-top:8px">
+    <section class="card" id="forecasts"><h2>Pronóstico congelado 19:00</h2><p class="foot" style="padding:0 0 8px">Champion · freeze 18:50 · vector 38 · maqueta</p><span class="badge official">PENDING_CORROBORATION</span><div id="bars"></div></section>
+    <section class="card"><h2>Resultado vs Top-k</h2><div class="num" style="margin:8px 0">29 ELEFANTE</div><span class="badge pending">no scored</span><p class="foot" style="padding:8px 0 0">Hit/miss solo con freeze + VERIFIED.</p></section>
+    <section class="card" id="fallos"><h2>Fallos y cuarentena</h2><div class="alert conflict"><b>Sin score prospectivo</b>El motor no admite métricas inventadas.</div><div class="alert"><b>Overnight bloqueada</b>19:00 → 09:00 no es intradía.</div><div class="alert"><b>Official ≠ train</b>Un official suelto no entra al Challenger.</div></section>
+  </div>
+  <section class="card" id="animalitos" style="margin-top:8px"><h2>Animalitos 00–36</h2><div class="zoo" id="zoo"></div></section>
+  <p class="foot">No es la operadora. Sin wallet ni “juega aquí”.</p>
+</main>
+<script>
+const A=[["00","BALLENA","#3d7ea6"],["0","DELFÍN","#4aa3c7"],["01","CARNERO","#c4a574"],["02","TORO","#8b5a3c"],["03","CIEMPIÉS","#c45c3a"],["04","ALACRÁN","#c9a227"],["05","LEÓN","#d4a017"],["06","RANA","#5fa86b"],["07","PERICO","#3dbb6a"],["08","RATÓN","#9aa3ad"],["09","ÁGUILA","#b8953a"],["10","TIGRE","#d17a22"],["11","GATO","#c9b48a"],["12","CABALLO","#7a5a3a"],["13","MONO","#b07a4a"],["14","PALOMA","#cfd6dd"],["15","ZORRO","#d2651a"],["16","OSO","#6b4a32"],["17","PAVO","#7b4ea0"],["18","BURRO","#8a8476"],["19","CHIVO","#cfc6b0"],["20","COCHINO","#e09aa8"],["21","GALLO","#d23a32"],["22","CAMELLO","#c49a5a"],["23","CEBRA","#e8e8e8"],["24","IGUANA","#6aa84f"],["25","GALLINA","#e8d28a"],["26","VACA","#efe6d6"],["27","PERRO","#c4a882"],["28","ZAMURO","#5a5854"],["29","ELEFANTE","#8b93a0"],["30","CAIMÁN","#4f7a3e"],["31","LAPA","#c9a06a"],["32","ARDILLA","#c07a3a"],["33","PESCADO","#3d8ec9"],["34","VENADO","#a06a3a"],["35","JIRAFA","#d4a03a"],["36","CULEBRA","#6b8f3a"]];
+const find=id=>A.find(x=>x[0]===id);
+const chip=(id,color)=>`<div class="chip" style="background:${color}">${id}</div>`;
+const hours=["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"];
+const demo=["00","0","01","02","05","06","07","08","09","10","29"];
+const flags=["oficial","oficial","oficial","oficial","oficial","oficial","pending","oficial","conflicto","oficial","oficial"];
+document.getElementById("timeline").innerHTML=hours.map((h,i)=>{const [id,name,c]=find(demo[i]);const cls=flags[i]==="conflicto"?"conflict":flags[i]==="pending"?"pending":"official";return `<div class="draw"><div class="t">${h}</div>${chip(id,c)}<div class="n">${id} ${name}</div><span class="badge ${cls}">${flags[i]}</span></div>`;}).join("");
+const top=[["29",7.81],["00",7.32],["0",6.98],["02",6.71],["01",6.35],["09",6.12],["07",5.89],["06",5.67]];
+document.getElementById("bars").innerHTML=top.map(([id,p])=>{const [,name,c]=find(id);return `<div class="bar">${chip(id,c)}<div>${id} ${name}<div class="track"><i style="width:${(p/8)*100}%"></i></div></div><span>${p.toFixed(2)}%</span></div>`;}).join("");
+document.getElementById("zoo").innerHTML=A.map(([id,name,c])=>`<figure>${chip(id,c)}<figcaption>${id}<br>${name}</figcaption></figure>`).join("");
+</script>
+</body></html>
